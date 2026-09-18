@@ -31,7 +31,7 @@ export function AuthForm({ mode, next }: { mode: 'login' | 'signup'; next: strin
   const nextQs = next !== '/' ? `?next=${encodeURIComponent(next)}` : ''
 
   return (
-    <div className="hero-gradient grain-overlay relative overflow-hidden min-h-screen flex items-center justify-center px-4 sm:px-6 pt-24 sm:pt-28 pb-16">
+    <div data-sky className="hero-gradient grain-overlay relative overflow-hidden min-h-screen flex items-center justify-center px-4 sm:px-6 pt-24 sm:pt-28 pb-16">
       <HeroClouds />
       <Starfield />
 

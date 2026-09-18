@@ -228,15 +228,6 @@ textarea {
   box-shadow: 0 4px 16px rgba(74, 222, 184, 0.35);
 }
 
-/* Nav */
-.nav-item {
-  transition: background 0.15s, color 0.15s;
-}
-.nav-item.active {
-  background: #4ADEB8;
-  color: #0F172A;
-}
-
 /* Scrollbar hide for some containers */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

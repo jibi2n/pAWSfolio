@@ -20,7 +20,7 @@ export default async function FeedPage({ searchParams }: PageProps<'/'>) {
 
 function Hero() {
   return (
-    <div className="hero-gradient grain-overlay relative overflow-hidden min-h-[420px] sm:min-h-[480px] pt-[104px] sm:pt-[120px]">
+    <div data-sky className="hero-gradient grain-overlay relative overflow-hidden min-h-[420px] sm:min-h-[480px] pt-[104px] sm:pt-[120px]">
       <Starfield />
       {/* Vignette: darkens gently toward the edges, keeping the mascot area brightest */}
       <div className="absolute inset-0 z-[1] pointer-events-none bg-[radial-gradient(ellipse_75%_85%_at_50%_32%,transparent_35%,rgba(59,35,134,0.35)_100%)] purple:bg-[radial-gradient(ellipse_75%_85%_at_50%_32%,transparent_35%,rgba(30,17,69,0.95)_100%)]" aria-hidden />

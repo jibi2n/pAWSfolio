@@ -23,7 +23,7 @@ const gochi = Gochi_Hand({
 });
 
 export const metadata: Metadata = {
-  title: "builds.log · AWS Builders - UST",
+  title: "pAWSfolio · AWS Builders - UST",
   description: "See what fellow builders are making with AWS.",
 };
 

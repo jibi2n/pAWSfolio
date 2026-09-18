@@ -1,6 +1,6 @@
 # pAWSfolio
 
-**builds.log** is a showcase where members of **AWS Builders - UST** post what they've built with AWS, browse each other's work, bump the builds they like, and leave comments. Think of it as one shared portfolio for the whole org.
+**pAWSfolio** is a showcase where members of **AWS Builders - UST** post what they've built with AWS, browse each other's work, bump the builds they like, and leave comments. Think of it as one shared portfolio for the whole org.
 
 Built as my submission for the AWS Builders - UST developer assessment. The design is inspired by the [AWS Builders - UST website](https://www.aws-ust.org).
 

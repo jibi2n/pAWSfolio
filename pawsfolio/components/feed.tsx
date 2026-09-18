@@ -4,7 +4,7 @@ import { ALL_TAGS, type Build, type SortMode } from '@/lib/types'
 import { PostGrid } from './post-card'
 import { EmptyState } from './ui'
 
-const PER_PAGE = 6
+const PER_PAGE = 8 // two full rows at 4 columns
 
 export type FeedParams = { q?: string; tags?: string; sort?: string; page?: string }
 
@@ -36,18 +36,47 @@ export function Feed({ builds, params }: { builds: Build[]; params: FeedParams }
   const page = Math.min(totalPages, Math.max(1, Number(params.page) || 1))
   const paginated = sorted.slice((page - 1) * PER_PAGE, page * PER_PAGE)
 
-  return (
-    <div className="max-w-[1200px] mx-auto px-5 md:px-8 py-8 md:py-12">
-      <div className="flex flex-col gap-4 mb-8">
-        <Form action="/" className="relative">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute left-4 top-1/2 -translate-y-1/2" aria-hidden><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
-          <input type="search" name="q" defaultValue={q} placeholder="Search builds... (press Enter)" className="input pl-11" aria-label="Search builds" />
-          {activeTags.length > 0 && <input type="hidden" name="tags" value={activeTags.join(',')} />}
-          {sort === 'bumped' && <input type="hidden" name="sort" value="bumped" />}
-        </Form>
+  const first = (page - 1) * PER_PAGE + 1
+  const last = Math.min(page * PER_PAGE, sorted.length)
 
-        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-          <div className="flex gap-2 min-w-0 flex-1 overflow-x-auto no-scrollbar -mx-5 px-5 sm:mx-0 sm:px-0 sm:flex-wrap sm:overflow-visible">
+  // Same side margins as the nav, content aligned left like an editorial section rather than a centred column.
+  return (
+    <section className="px-4 md:px-8 lg:px-12 py-10 md:py-14" aria-labelledby="feed-title">
+      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5 mb-6">
+        <div>
+          <p className="font-mono text-[12px] font-semibold tracking-[0.15em] uppercase text-link purple:text-mint mb-2">{'// Latest builds'}</p>
+          <h2 id="feed-title" className="text-[26px] md:text-[32px] font-semibold text-text leading-tight">What members are building</h2>
+          <p className="text-[14px] text-subtle mt-1">
+            {filtered.length} {filtered.length === 1 ? 'build' : 'builds'}{q || activeTags.length ? ' match your filters' : ' from the community'}
+          </p>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-3 lg:shrink-0">
+          <Form action="/" className="relative sm:flex-1 lg:w-[520px] xl:w-[600px] lg:flex-none">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute left-4 top-1/2 -translate-y-1/2" aria-hidden><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+            <input type="search" name="q" defaultValue={q} placeholder="Search builds…" className="input pl-12 !h-13 text-[16px]" aria-label="Search builds (press Enter)" />
+            {activeTags.length > 0 && <input type="hidden" name="tags" value={activeTags.join(',')} />}
+            {sort === 'bumped' && <input type="hidden" name="sort" value="bumped" />}
+          </Form>
+          <div className="flex self-start rounded-tag overflow-hidden shrink-0 border border-lavender-bg">
+            {(['newest', 'bumped'] as const).map(s => (
+              <Link
+                key={s}
+                href={href({ sort: s === 'bumped' ? s : '' })}
+                scroll={false}
+                aria-current={sort === s ? 'true' : undefined}
+                className={`seg-btn font-mono px-5 h-13 inline-flex items-center text-[13px] font-medium ${sort === s ? 'active' : 'text-subtle bg-card'}`}
+              >
+                {s === 'newest' ? 'Newest' : 'Most bumped'}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-start gap-4 mb-8 pb-6 border-b border-lavender-bg">
+        <span className="hidden md:block font-mono text-[12px] text-muted shrink-0 pt-1.5">Filter by service</span>
+        <div className="flex gap-2 min-w-0 flex-1 overflow-x-auto no-scrollbar -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap md:overflow-visible">
             {ALL_TAGS.map(t => {
               const active = activeTags.includes(t)
               const tags = active ? activeTags.filter(x => x !== t) : [...activeTags, t]
@@ -63,20 +92,6 @@ export function Feed({ builds, params }: { builds: Build[]; params: FeedParams }
                 </Link>
               )
             })}
-          </div>
-          <div className="flex self-start rounded-tag overflow-hidden shrink-0 border border-lavender-bg">
-            {(['newest', 'bumped'] as const).map(s => (
-              <Link
-                key={s}
-                href={href({ sort: s === 'bumped' ? s : '' })}
-                scroll={false}
-                aria-current={sort === s ? 'true' : undefined}
-                className={`seg-btn font-mono px-4 py-2 text-[13px] font-medium ${sort === s ? 'active' : 'text-subtle bg-card'}`}
-              >
-                {s === 'newest' ? 'Newest' : 'Most bumped'}
-              </Link>
-            ))}
-          </div>
         </div>
       </div>
 
@@ -85,10 +100,13 @@ export function Feed({ builds, params }: { builds: Build[]; params: FeedParams }
       ) : (
         <>
           <PostGrid builds={paginated} />
-          {totalPages > 1 && <Pagination page={page} totalPages={totalPages} href={p => href({ page: p > 1 ? String(p) : '' })} />}
+          <div className="flex flex-wrap items-center justify-between gap-4 mt-10 md:mt-12">
+            <p className="font-mono text-[13px] text-muted">Showing {first}–{last} of {sorted.length}</p>
+            {totalPages > 1 && <Pagination page={page} totalPages={totalPages} href={p => href({ page: p > 1 ? String(p) : '' })} />}
+          </div>
         </>
       )}
-    </div>
+    </section>
   )
 }
 
@@ -96,7 +114,7 @@ function Pagination({ page, totalPages, href }: { page: number; totalPages: numb
   const edge = 'px-4 py-2 rounded-tag text-[14px] font-medium bg-lavender-bg text-on-soft'
   const disabled = 'opacity-40 pointer-events-none'
   return (
-    <nav className="flex flex-wrap items-center justify-center gap-2 mt-10 md:mt-12" aria-label="Pagination">
+    <nav className="flex flex-wrap items-center gap-2" aria-label="Pagination">
       <Link href={href(page - 1)} aria-disabled={page === 1} className={`${edge} ${page === 1 ? disabled : ''}`}>← Prev</Link>
       {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
         <Link

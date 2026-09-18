@@ -1,6 +1,6 @@
 # DESIGN.md: AWS Builders - UST
 
-Design guide for **builds.log**, the member showcase for AWS Builders - UST. Use this as the source of truth for every screen and component.
+Design guide for **pAWSfolio**, the member showcase for AWS Builders - UST. Use this as the source of truth for every screen and component.
 
 ## 1. Brand
 
@@ -95,10 +95,14 @@ States: hover lifts 2px and deepens shadow. Pressed scales to 0.98. Disabled at 
 
 ### Navigation
 
-- White pill bar, radius 999px, soft shadow, padding 4px.
-- Items: Poppins Regular 14px, `text` color.
-- Active item: mint green (`#4ADEB8`) pill with `text` color and Medium weight.
-- Items: Home, About, Events, People, Careers, Contact (for builds.log: Feed, Post a build, My builds).
+- Full-width bar fixed to the top: 80px tall on desktop, 64px on mobile. Spans the screen with 48px side margins. No floating capsule, no shadow.
+- Three columns: logo on the left, links centred on the page, theme toggle + account on the right.
+- Over a purple sky (hero, login, signup): transparent, white text. Everywhere else, and once you scroll past the sky: solid `white` (90%, blurred) with a 1px `background` bottom border.
+- Logo: cloud tile (44px) + "pAWSfolio" wordmark (Poppins Bold 21px). No tagline.
+- Links: JetBrains Mono 16px, Feed and My Builds. Inactive links are muted and brighten on hover.
+- Active link: a short 3px mint (`#4ADEB8`) underline, never a filled pill.
+- "Post a build" is not in the bar; it lives in the account menu, the hero, and empty states.
+- Mobile (below 1024px): logo left, theme toggle and ☰ right; the menu holds the links, "Post a build", and account actions.
 
 ### Search field
 
@@ -118,7 +122,7 @@ States: hover lifts 2px and deepens shadow. Pressed scales to 0.98. Disabled at 
 - Body in white Poppins 14px.
 - Small primary button on the right.
 
-### Content card (builds.log post card)
+### Content card (post card)
 
 - White fill, radius 20px, card shadow, overflow hidden.
 - Top: image or GIF, 16:10 ratio, rounded top corners.
@@ -189,7 +193,7 @@ Layered clouds with gradients and subtle grain for a dreamy, cloud-like feel.
 - After posting: "Your build is live! ☁"
 - Delete confirm: "Delete this build and its comments? This can't be undone."
 
-## 12. Screens for builds.log
+## 12. Screens for pAWSfolio
 
 1. **Feed (desktop 1440 and mobile 390):** dark purple hero with cloud layers, H1 "What's in the Clouds?" in the handwritten accent, short intro, primary button "Post a build". Below: search field, service tags as filters, 3-column grid of post cards (1 column on mobile), pagination.
 2. **Single build:** large image or GIF, title (H2), author row, status badge, link card (GitHub or live site), tags, description, bump button. Owner sees Edit (secondary) and Delete (danger). Comments section with add-comment box and comment list below.
