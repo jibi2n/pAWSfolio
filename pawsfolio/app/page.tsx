@@ -17,7 +17,7 @@ export default async function FeedPage({ searchParams }: PageProps<'/'>) {
 
 function Hero() {
   return (
-    <div className="hero-gradient grain-overlay relative overflow-hidden min-h-[480px] pt-[120px]">
+    <div className="hero-gradient grain-overlay relative overflow-hidden min-h-[420px] sm:min-h-[480px] pt-[104px] sm:pt-[120px]">
       {Array.from({ length: 20 }, (_, i) => (
         <div
           key={i}
@@ -33,12 +33,12 @@ function Hero() {
         <CloudBg className="absolute bottom-4 left-[25%] w-[50%] opacity-40" />
       </div>
 
-      <div className="relative z-20 max-w-4xl mx-auto px-8 pb-20 text-center">
+      <div className="relative z-20 max-w-4xl mx-auto px-5 sm:px-8 pb-20 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 bg-white/12 border border-white/20">
           <span className="font-mono text-[12px] font-semibold tracking-[0.15em] text-white uppercase">BUILDS.LOG</span>
         </div>
-        <h1 className="font-hand text-[72px] leading-tight text-white mb-5">What&apos;s in the Clouds?</h1>
-        <p className="text-[17px] text-white/80 max-w-lg mx-auto leading-relaxed mb-8">
+        <h1 className="font-hand text-[44px] sm:text-[72px] leading-tight text-white mb-5">What&apos;s in the Clouds?</h1>
+        <p className="text-[15px] sm:text-[17px] text-white/80 max-w-lg mx-auto leading-relaxed mb-8">
           See what fellow builders are making with AWS. Share yours, bump the ones you love.
         </p>
         <Link href="/builds/new" className={btn('primary')}>

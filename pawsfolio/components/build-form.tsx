@@ -54,9 +54,9 @@ export function BuildForm({ existing }: { existing?: Build }) {
         <CloudBg className="w-[300px]" />
       </div>
 
-      <div className="max-w-[640px] mx-auto px-8 pt-28 pb-20">
-        <div className="p-10 bg-white rounded-hero shadow-[0_8px_40px_rgba(46,26,95,0.10)]">
-          <h1 className="text-[28px] font-semibold text-text mb-8">{existing ? 'Edit build' : 'Post a build'}</h1>
+      <div className="max-w-[640px] mx-auto px-4 sm:px-8 pt-24 sm:pt-28 pb-20">
+        <div className="p-6 sm:p-10 bg-white rounded-hero shadow-[0_8px_40px_rgba(46,26,95,0.10)]">
+          <h1 className="text-[24px] sm:text-[28px] font-semibold text-text mb-6 sm:mb-8">{existing ? 'Edit build' : 'Post a build'}</h1>
 
           <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
             {existing && <input type="hidden" name="id" value={existing.id} />}

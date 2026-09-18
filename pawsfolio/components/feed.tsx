@@ -37,7 +37,7 @@ export function Feed({ builds, params }: { builds: Build[]; params: FeedParams }
   const paginated = sorted.slice((page - 1) * PER_PAGE, page * PER_PAGE)
 
   return (
-    <div className="max-w-[1200px] mx-auto px-8 py-12">
+    <div className="max-w-[1200px] mx-auto px-5 md:px-8 py-8 md:py-12">
       <div className="flex flex-col gap-4 mb-8">
         <Form action="/" className="relative">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute left-4 top-1/2 -translate-y-1/2" aria-hidden><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
@@ -46,8 +46,8 @@ export function Feed({ builds, params }: { builds: Build[]; params: FeedParams }
           {sort === 'bumped' && <input type="hidden" name="sort" value="bumped" />}
         </Form>
 
-        <div className="flex items-center gap-4 flex-wrap">
-          <div className="flex flex-wrap gap-2 flex-1">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+          <div className="flex gap-2 min-w-0 flex-1 overflow-x-auto no-scrollbar -mx-5 px-5 sm:mx-0 sm:px-0 sm:flex-wrap sm:overflow-visible">
             {ALL_TAGS.map(t => {
               const active = activeTags.includes(t)
               const tags = active ? activeTags.filter(x => x !== t) : [...activeTags, t]
@@ -57,14 +57,14 @@ export function Feed({ builds, params }: { builds: Build[]; params: FeedParams }
                   href={href({ tags: tags.join(',') })}
                   scroll={false}
                   aria-pressed={active}
-                  className={`tag-chip font-mono inline-flex items-center px-3 py-1 rounded-tag text-[13px] ${active ? 'active bg-vibrant-purple text-white' : 'bg-lavender-bg text-vibrant-purple'}`}
+                  className={`tag-chip shrink-0 font-mono inline-flex items-center px-3 py-1 rounded-tag text-[13px] ${active ? 'active bg-vibrant-purple text-white' : 'bg-lavender-bg text-vibrant-purple'}`}
                 >
                   #{t}
                 </Link>
               )
             })}
           </div>
-          <div className="flex rounded-tag overflow-hidden shrink-0 border border-lavender-bg">
+          <div className="flex self-start rounded-tag overflow-hidden shrink-0 border border-lavender-bg">
             {(['newest', 'bumped'] as const).map(s => (
               <Link
                 key={s}
@@ -96,7 +96,7 @@ function Pagination({ page, totalPages, href }: { page: number; totalPages: numb
   const edge = 'px-4 py-2 rounded-tag text-[14px] font-medium bg-lavender-bg text-deep-purple'
   const disabled = 'opacity-40 pointer-events-none'
   return (
-    <nav className="flex items-center justify-center gap-2 mt-12" aria-label="Pagination">
+    <nav className="flex flex-wrap items-center justify-center gap-2 mt-10 md:mt-12" aria-label="Pagination">
       <Link href={href(page - 1)} aria-disabled={page === 1} className={`${edge} ${page === 1 ? disabled : ''}`}>← Prev</Link>
       {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
         <Link

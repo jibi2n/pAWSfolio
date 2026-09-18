@@ -29,17 +29,17 @@ export function AuthForm({ mode, next }: { mode: 'login' | 'signup'; next: strin
   const nextQs = next !== '/' ? `?next=${encodeURIComponent(next)}` : ''
 
   return (
-    <div className="hero-gradient grain-overlay relative overflow-hidden min-h-screen flex items-center justify-center px-6 pt-28 pb-16">
+    <div className="hero-gradient grain-overlay relative overflow-hidden min-h-screen flex items-center justify-center px-4 sm:px-6 pt-24 sm:pt-28 pb-16">
       <div className="absolute bottom-0 left-0 right-0 h-[160px] pointer-events-none" aria-hidden>
         <CloudBg className="absolute bottom-0 left-[-10%] w-[60%] opacity-60" />
         <CloudBg className="absolute bottom-0 right-[-5%] w-[55%] opacity-50" />
       </div>
 
-      <div className="relative z-20 w-full max-w-[440px] p-10 bg-white rounded-hero shadow-[0_24px_64px_rgba(46,26,95,0.35)]">
+      <div className="relative z-20 w-full max-w-[440px] p-6 sm:p-10 bg-white rounded-hero shadow-[0_24px_64px_rgba(46,26,95,0.35)]">
         <div className="flex items-center justify-center rounded-btn bg-vibrant-purple w-14 h-14 mb-6">
           <CloudFace size={40} />
         </div>
-        <h1 className="text-[28px] font-semibold text-text leading-tight mb-1">{copy.title}</h1>
+        <h1 className="text-[24px] sm:text-[28px] font-semibold text-text leading-tight mb-1">{copy.title}</h1>
         <p className="text-[15px] text-[#64748B] mb-6">{copy.sub}</p>
 
         <div className="flex gap-3 p-4 mb-6 rounded-btn bg-[#FEF3C7] text-[13px] text-[#78350F] leading-relaxed" role="note">

@@ -47,7 +47,7 @@ export function Comments({ build, user }: { build: Build; user: PublicUser | nul
                   <form action={deleteComment.bind(null, build.id, c.id)}>
                     <button
                       type="submit"
-                      className="mt-1.5 text-[12px] text-muted hover:text-[#E11D48] transition-colors"
+                      className="-ml-2 mt-0.5 px-2 py-2 text-[12px] text-muted hover:text-[#E11D48] transition-colors"
                       aria-label={`Delete comment by ${c.handle}`}
                     >
                       Delete

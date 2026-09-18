@@ -6,7 +6,7 @@ import { OwnerActions } from './owner-actions'
 
 export function BuildDetail({ build, user, isNew }: { build: Build; user: PublicUser | null; isNew: boolean }) {
   return (
-    <div className="max-w-[800px] mx-auto px-8 pt-28 pb-20">
+    <div className="max-w-[800px] mx-auto px-5 sm:px-8 pt-24 sm:pt-28 pb-20">
       {isNew && (
         <div className="flex items-center gap-4 p-5 mb-6 rounded-card bg-white shadow-purple" role="status">
           <MascotCloud size={64} />
@@ -25,12 +25,12 @@ export function BuildDetail({ build, user, isNew }: { build: Build; user: Public
         {user?.id === build.authorId && <OwnerActions buildId={build.id} />}
       </div>
 
-      <div className="overflow-hidden mb-8 rounded-card aspect-video bg-lavender-bg">
+      <div className="overflow-hidden mb-6 sm:mb-8 rounded-card aspect-video bg-lavender-bg">
         <img src={build.imageUrl} alt={build.title} className="w-full h-full object-cover" />
       </div>
 
       <StatusBadge status={build.status} />
-      <h1 className="text-[32px] font-semibold text-text mt-3 mb-4 leading-tight">{build.title}</h1>
+      <h1 className="text-[26px] sm:text-[32px] font-semibold text-text mt-3 mb-4 leading-tight">{build.title}</h1>
 
       <div className="flex items-center gap-3 mb-6">
         <Avatar name={build.author} color={build.avatarColor} size={40} />

@@ -73,7 +73,7 @@ export function Logo() {
       </div>
       <div className="leading-tight text-left">
         <div className="font-bold text-[15px] text-text">AWS Builders - UST</div>
-        <div className="font-mono text-[10px] text-muted tracking-[0.15em] font-semibold uppercase">BUILD • SHARE • GROW TOGETHER</div>
+        <div className="hidden sm:block font-mono text-[10px] text-muted tracking-[0.15em] font-semibold uppercase">BUILD • SHARE • GROW TOGETHER</div>
       </div>
     </div>
   )
