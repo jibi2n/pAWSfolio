@@ -27,7 +27,7 @@ Build a blog-style application with the following features:
 - **Bumps.** Like a build once per account. The feed can sort by most bumped.
 - **Image and GIF uploads** up to 10MB.
 - **Responsive**, from a 390px phone to a desktop.
-- **Interactive hero clouds.** Soft, see-through Vanta.js clouds on the landing page drift toward your mouse or finger (off when the device asks for reduced motion).
+- **Interactive hero clouds.** Soft, see-through Vanta.js clouds on the landing page, login, and signup drift toward your mouse or finger (off when the device asks for reduced motion).
 - **Purple mode.** A toggle in the nav switches to a dark purple theme. It remembers your choice and follows your device's dark mode setting by default.
 
 ## Tech Stack
@@ -37,7 +37,7 @@ Build a blog-style application with the following features:
 | Framework | [Next.js 16](https://nextjs.org) (App Router, Server Components, Server Actions)                         |
 | UI        | React 19 and TypeScript                                                                                  |
 | Styling   | Tailwind CSS v4, with design tokens from [DESIGN.md](DESIGN.md) in `app/globals.css`                     |
-| Hero      | [Vanta.js](https://www.vantajs.com) CLOUDS effect on [three.js](https://threejs.org): interactive clouds that follow the pointer |
+| Backgrounds | [Vanta.js](https://www.vantajs.com) CLOUDS effect on [three.js](https://threejs.org): interactive clouds behind the hero, login, and signup |
 | Fonts     | Poppins, JetBrains Mono, and Gochi Hand, loaded with `next/font`                                         |
 | Data      | A JSON file on disk (`data/db.json`). No database server to set up                                       |
 | Images    | Saved to `data/uploads/` and served by a route handler                                                   |

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Feed } from '@/components/feed'
 import { HeroClouds } from '@/components/hero-clouds'
+import { Mascot } from '@/components/mascot'
 import { getCurrentUser } from '@/lib/auth'
 import { getBuilds } from '@/lib/db'
 import { btn } from '@/components/ui'
@@ -32,9 +33,7 @@ function Hero() {
 
 
       <div className="relative z-20 max-w-4xl mx-auto px-5 sm:px-8 pb-20 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 bg-white/12 border border-white/20">
-          <span className="font-mono text-[12px] font-semibold tracking-[0.15em] text-white uppercase">BUILDS.LOG</span>
-        </div>
+        <Mascot />
         <h1 className="font-hand text-[44px] sm:text-[72px] leading-tight text-white mb-5">What&apos;s in the Clouds?</h1>
         <p className="text-[15px] sm:text-[17px] text-white/80 max-w-lg mx-auto leading-relaxed mb-8">
           See what fellow builders are making with AWS. Share yours, bump the ones you love.
