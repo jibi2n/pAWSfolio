@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* `purple:` utilities apply when <html data-theme="purple"> is set */
+@custom-variant purple (&:where([data-theme="purple"], [data-theme="purple"] *));
+
 @theme {
   --color-deep-purple: #2E1A5F;
   --color-vibrant-purple: #7C3AED;
@@ -10,6 +13,20 @@
   --color-text: #0F172A;
   --color-muted: #94A3B8;
   --color-white: #FFFFFF;
+  --color-ink: #0F172A; /* text on mint: stays dark in every theme */
+
+  /* Semantic tokens: light values here, purple values in [data-theme="purple"] below */
+  --color-card: #FFFFFF;
+  --color-subtle: #64748B;
+  --color-hover: #F1F5F9;
+  --color-link: #7C3AED;
+  --color-on-soft: #2E1A5F;
+  --color-danger: #E11D48;
+  --color-danger-soft: #FEF2F2;
+  --color-warn: #78350F;
+  --color-warn-soft: #FEF3C7;
+  --color-live: #0F766E;
+  --color-live-soft: rgba(74, 222, 184, 0.2);
 
   --font-sans: var(--font-poppins), sans-serif;
   --font-mono: var(--font-jetbrains), monospace;
@@ -22,14 +39,35 @@
   --radius-pill: 999px;
 }
 
+/* Purple mode (the AWS-UST "About us" palette). Toggled by <ThemeToggle />; set before paint by the script in layout.tsx. */
+:root[data-theme="purple"] {
+  color-scheme: dark;
+  --color-surface: #1E1145;
+  --color-card: #2A1A5E;
+  --color-text: #F1EAFF;
+  --color-subtle: #C9BEEA;
+  --color-muted: #9A8CC4;
+  --color-hover: rgba(255, 255, 255, 0.06);
+  --color-lavender-bg: #3A2775;
+  --color-deep-purple: #5B3CC4;
+  --color-link: #C4B5FD;
+  --color-on-soft: #EDE4FF;
+  --color-danger: #FB7185;
+  --color-danger-soft: rgba(251, 113, 133, 0.12);
+  --color-warn: #FCD34D;
+  --color-warn-soft: rgba(252, 211, 77, 0.12);
+  --color-live: #4ADEB8;
+  --color-live-soft: rgba(74, 222, 184, 0.15);
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   font-family: var(--font-poppins), sans-serif;
-  background-color: #F8FAFC;
-  color: #0F172A;
+  background-color: var(--color-surface);
+  color: var(--color-text);
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
@@ -42,7 +80,7 @@ body {
 
 /* Focus ring */
 *:focus-visible {
-  outline: 2px solid #7C3AED;
+  outline: 2px solid var(--color-link);
   outline-offset: 2px;
 }
 
@@ -110,7 +148,7 @@ body {
   transition: background 0.15s, color 0.15s;
 }
 .seg-btn.active {
-  background: #2E1A5F;
+  background: var(--color-deep-purple);
   color: #FFFFFF;
 }
 
@@ -120,15 +158,16 @@ body {
     width: 100%;
     height: 48px;
     padding: 0 16px;
-    background: #FFFFFF;
-    border: 1px solid #E9D5FF;
+    background: var(--color-card);
+    border: 1px solid var(--color-lavender-bg);
     border-radius: 12px;
     font-size: 15px;
-    color: #0F172A;
+    color: var(--color-text);
     outline: none;
     transition: border-color 0.15s;
   }
-  .input:focus { border-color: #7C3AED; }
+  .input:focus { border-color: var(--color-link); }
+  .input::placeholder { color: var(--color-muted); }
   .input[aria-invalid="true"] { border-color: #F43F5E; }
 }
 
@@ -141,12 +180,12 @@ textarea {
 /* Upload zone */
 .upload-zone {
   border: 2px dashed #C084FC;
-  background: #F8FAFC;
+  background: var(--color-surface);
   border-radius: 12px;
   transition: background 0.2s;
 }
 .upload-zone:hover {
-  background: #F3EEFF;
+  background: var(--color-hover);
 }
 
 /* Modal backdrop */

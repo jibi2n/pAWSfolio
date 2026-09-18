@@ -57,7 +57,7 @@ export function Feed({ builds, params }: { builds: Build[]; params: FeedParams }
                   href={href({ tags: tags.join(',') })}
                   scroll={false}
                   aria-pressed={active}
-                  className={`tag-chip shrink-0 font-mono inline-flex items-center px-3 py-1 rounded-tag text-[13px] ${active ? 'active bg-vibrant-purple text-white' : 'bg-lavender-bg text-vibrant-purple'}`}
+                  className={`tag-chip shrink-0 font-mono inline-flex items-center px-3 py-1 rounded-tag text-[13px] ${active ? 'active bg-vibrant-purple text-white' : 'bg-lavender-bg text-link'}`}
                 >
                   #{t}
                 </Link>
@@ -71,7 +71,7 @@ export function Feed({ builds, params }: { builds: Build[]; params: FeedParams }
                 href={href({ sort: s === 'bumped' ? s : '' })}
                 scroll={false}
                 aria-current={sort === s ? 'true' : undefined}
-                className={`seg-btn font-mono px-4 py-2 text-[13px] font-medium ${sort === s ? 'active' : 'text-[#64748B] bg-white'}`}
+                className={`seg-btn font-mono px-4 py-2 text-[13px] font-medium ${sort === s ? 'active' : 'text-subtle bg-card'}`}
               >
                 {s === 'newest' ? 'Newest' : 'Most bumped'}
               </Link>
@@ -93,7 +93,7 @@ export function Feed({ builds, params }: { builds: Build[]; params: FeedParams }
 }
 
 function Pagination({ page, totalPages, href }: { page: number; totalPages: number; href: (p: number) => string }) {
-  const edge = 'px-4 py-2 rounded-tag text-[14px] font-medium bg-lavender-bg text-deep-purple'
+  const edge = 'px-4 py-2 rounded-tag text-[14px] font-medium bg-lavender-bg text-on-soft'
   const disabled = 'opacity-40 pointer-events-none'
   return (
     <nav className="flex flex-wrap items-center justify-center gap-2 mt-10 md:mt-12" aria-label="Pagination">
@@ -103,7 +103,7 @@ function Pagination({ page, totalPages, href }: { page: number; totalPages: numb
           key={p}
           href={href(p)}
           aria-current={page === p ? 'page' : undefined}
-          className={`w-9 h-9 flex items-center justify-center rounded-[10px] text-[14px] font-semibold ${page === p ? 'bg-deep-purple text-white' : 'bg-white text-[#64748B]'}`}
+          className={`w-9 h-9 flex items-center justify-center rounded-[10px] text-[14px] font-semibold ${page === p ? 'bg-deep-purple text-white' : 'bg-card text-subtle'}`}
         >
           {p}
         </Link>

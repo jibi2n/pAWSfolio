@@ -3,7 +3,8 @@
 import { useActionState } from 'react'
 import Link from 'next/link'
 import { logIn, signUp, type AuthState } from '@/app/actions'
-import { CloudBg, CloudFace, btn } from './ui'
+import { HeroClouds } from './hero-clouds'
+import { CloudFace, btn } from './ui'
 
 const FIELDS = {
   login: [
@@ -30,19 +31,16 @@ export function AuthForm({ mode, next }: { mode: 'login' | 'signup'; next: strin
 
   return (
     <div className="hero-gradient grain-overlay relative overflow-hidden min-h-screen flex items-center justify-center px-4 sm:px-6 pt-24 sm:pt-28 pb-16">
-      <div className="absolute bottom-0 left-0 right-0 h-[160px] pointer-events-none" aria-hidden>
-        <CloudBg className="absolute bottom-0 left-[-10%] w-[60%] opacity-60" />
-        <CloudBg className="absolute bottom-0 right-[-5%] w-[55%] opacity-50" />
-      </div>
+      <HeroClouds />
 
-      <div className="relative z-20 w-full max-w-[440px] p-6 sm:p-10 bg-white rounded-hero shadow-[0_24px_64px_rgba(46,26,95,0.35)]">
+      <div className="relative z-20 w-full max-w-[440px] p-6 sm:p-10 bg-card rounded-hero shadow-[0_24px_64px_rgba(46,26,95,0.35)]">
         <div className="flex items-center justify-center rounded-btn bg-vibrant-purple w-14 h-14 mb-6">
           <CloudFace size={40} />
         </div>
         <h1 className="text-[24px] sm:text-[28px] font-semibold text-text leading-tight mb-1">{copy.title}</h1>
-        <p className="text-[15px] text-[#64748B] mb-6">{copy.sub}</p>
+        <p className="text-[15px] text-subtle mb-6">{copy.sub}</p>
 
-        <div className="flex gap-3 p-4 mb-6 rounded-btn bg-[#FEF3C7] text-[13px] text-[#78350F] leading-relaxed" role="note">
+        <div className="flex gap-3 p-4 mb-6 rounded-btn bg-warn-soft text-[13px] text-warn leading-relaxed" role="note">
           <span aria-hidden>⚠️</span>
           <p>
             Since this is an MVP, please note that passwords are <strong>not hashed yet</strong>. Don&apos;t reuse a real password.
@@ -59,14 +57,14 @@ export function AuthForm({ mode, next }: { mode: 'login' | 'signup'; next: strin
               <input id={f.name} {...f} required defaultValue={state.values?.[f.name]} className="input" aria-invalid={!!state.error} />
             </div>
           ))}
-          {state.error && <p className="text-[13px] text-[#E11D48]" role="alert">{state.error}</p>}
+          {state.error && <p className="text-[13px] text-danger" role="alert">{state.error}</p>}
           <button type="submit" disabled={pending} className={`${btn('primary')} mt-2`}>
             {pending ? copy.pending : copy.submit}
           </button>
         </form>
 
-        <p className="text-[14px] text-[#64748B] text-center mt-6">
-          {copy.alt} <Link href={copy.altHref + nextQs} className="text-vibrant-purple font-medium">{copy.altLink}</Link>
+        <p className="text-[14px] text-subtle text-center mt-6">
+          {copy.alt} <Link href={copy.altHref + nextQs} className="text-link font-medium">{copy.altLink}</Link>
         </p>
       </div>
     </div>

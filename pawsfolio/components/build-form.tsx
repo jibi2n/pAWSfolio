@@ -4,7 +4,7 @@ import { startTransition, useActionState, useRef, useState } from 'react'
 import Link from 'next/link'
 import { saveBuild, type BuildFormState } from '@/app/actions'
 import { AWS_SERVICE_TAGS, type Build, type Status } from '@/lib/types'
-import { CloudBg, Tag, btn } from './ui'
+import { Tag, btn } from './ui'
 
 const STATUSES: [Status, string][] = [['live', 'Live'], ['in-progress', 'In progress'], ['archived', 'Archived']]
 
@@ -12,10 +12,10 @@ function Field({ label, htmlFor, required, error, children }: { label: string; h
   return (
     <div className="flex flex-col gap-1.5">
       <label htmlFor={htmlFor} className="text-[14px] font-semibold text-text">
-        {label}{required && <span className="text-vibrant-purple ml-0.5">*</span>}
+        {label}{required && <span className="text-link ml-0.5">*</span>}
       </label>
       {children}
-      {error && <p className="text-[13px] text-[#E11D48]" role="alert">{error}</p>}
+      {error && <p className="text-[13px] text-danger" role="alert">{error}</p>}
     </div>
   )
 }
@@ -47,15 +47,8 @@ export function BuildForm({ existing }: { existing?: Build }) {
 
   return (
     <div className="relative overflow-hidden min-h-screen">
-      <div className="absolute top-0 left-[-60px] opacity-25 pointer-events-none" aria-hidden>
-        <CloudBg className="w-[320px]" />
-      </div>
-      <div className="absolute top-0 right-[-60px] opacity-20 pointer-events-none scale-x-[-1]" aria-hidden>
-        <CloudBg className="w-[300px]" />
-      </div>
-
       <div className="max-w-[640px] mx-auto px-4 sm:px-8 pt-24 sm:pt-28 pb-20">
-        <div className="p-6 sm:p-10 bg-white rounded-hero shadow-[0_8px_40px_rgba(46,26,95,0.10)]">
+        <div className="p-6 sm:p-10 bg-card rounded-hero shadow-[0_8px_40px_rgba(46,26,95,0.10)]">
           <h1 className="text-[24px] sm:text-[28px] font-semibold text-text mb-6 sm:mb-8">{existing ? 'Edit build' : 'Post a build'}</h1>
 
           <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
@@ -138,7 +131,7 @@ export function BuildForm({ existing }: { existing?: Build }) {
                     type="button"
                     onClick={() => setStatus(s)}
                     aria-pressed={status === s}
-                    className={`seg-btn font-mono flex-1 py-2.5 text-[13px] font-medium ${status === s ? 'active' : 'text-[#64748B] bg-white'}`}
+                    className={`seg-btn font-mono flex-1 py-2.5 text-[13px] font-medium ${status === s ? 'active' : 'text-subtle bg-card'}`}
                   >
                     {label}
                   </button>

@@ -22,8 +22,8 @@ export function Comments({ build, user }: { build: Build; user: PublicUser | nul
           </div>
         </form>
       ) : (
-        <p className="mb-6 p-4 rounded-btn bg-white text-[14px] text-[#64748B]">
-          <Link href={`/login?next=/builds/${build.id}`} className="text-vibrant-purple font-medium">Log in</Link> to join the conversation.
+        <p className="mb-6 p-4 rounded-btn bg-card text-[14px] text-subtle">
+          <Link href={`/login?next=/builds/${build.id}`} className="text-link font-medium">Log in</Link> to join the conversation.
         </p>
       )}
 
@@ -32,13 +32,13 @@ export function Comments({ build, user }: { build: Build; user: PublicUser | nul
           // Commenters can delete their own comments; post owners can delete any comment on their post.
           const canDelete = !!user && (c.authorId === user.id || isPostOwner)
           return (
-            <div key={c.id} className="p-4 flex gap-3 bg-white rounded-btn shadow-[0_2px_8px_rgba(46,26,95,0.06)]">
+            <div key={c.id} className="p-4 flex gap-3 bg-card rounded-btn shadow-[0_2px_8px_rgba(46,26,95,0.06)]">
               <Avatar name={c.author} color={c.avatarColor} size={34} />
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1 flex-wrap">
                   <span className="text-[14px] font-semibold text-text">{c.handle}</span>
                   {c.authorId === build.authorId && (
-                    <span className="font-mono px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[rgba(74,222,184,0.2)] text-[#0F766E]">Builder</span>
+                    <span className="font-mono px-2 py-0.5 rounded-full text-[11px] font-semibold bg-live-soft text-live">Builder</span>
                   )}
                   <span className="font-mono text-[12px] text-muted">{c.timeAgo}</span>
                 </div>
@@ -47,7 +47,7 @@ export function Comments({ build, user }: { build: Build; user: PublicUser | nul
                   <form action={deleteComment.bind(null, build.id, c.id)}>
                     <button
                       type="submit"
-                      className="-ml-2 mt-0.5 px-2 py-2 text-[12px] text-muted hover:text-[#E11D48] transition-colors"
+                      className="-ml-2 mt-0.5 px-2 py-2 text-[12px] text-muted hover:text-danger transition-colors"
                       aria-label={`Delete comment by ${c.handle}`}
                     >
                       Delete

@@ -6,10 +6,10 @@ import type { Status } from '@/lib/types'
 // ─── Buttons ──────────────────────────────────────────────────────────────────
 
 const variants = {
-  primary: 'bg-mint text-text shadow-mint-glow',
+  primary: 'bg-mint text-ink shadow-mint-glow',
   secondary: 'bg-deep-purple text-white',
-  tertiary: 'bg-lavender-bg text-deep-purple',
-  danger: 'bg-white text-[#E11D48] border border-[#F43F5E]',
+  tertiary: 'bg-lavender-bg text-on-soft',
+  danger: 'bg-card text-danger border border-[#F43F5E]',
 }
 const sizes = {
   md: 'min-h-12 px-7 text-[15px]',
@@ -54,17 +54,6 @@ export function MascotCloud({ size = 120 }: { size?: number }) {
   )
 }
 
-export function CloudBg({ className = '' }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 240 100" fill="none" className={className} aria-hidden>
-      <ellipse cx="120" cy="70" rx="110" ry="40" fill="white" fillOpacity="0.07" />
-      <ellipse cx="60" cy="58" rx="50" ry="38" fill="white" fillOpacity="0.07" />
-      <ellipse cx="180" cy="54" rx="60" ry="44" fill="white" fillOpacity="0.07" />
-      <ellipse cx="120" cy="48" rx="80" ry="44" fill="white" fillOpacity="0.07" />
-    </svg>
-  )
-}
-
 export function Logo() {
   return (
     <div className="flex items-center gap-3">
@@ -90,9 +79,9 @@ export function Avatar({ name, color, size = 32 }: { name: string; color: string
 }
 
 const statusStyles: Record<Status, { label: string; background: string; color: string }> = {
-  live: { label: 'Live', background: 'rgba(74,222,184,0.2)', color: '#0F766E' },
-  'in-progress': { label: 'In progress', background: '#E9D5FF', color: '#7C3AED' },
-  archived: { label: 'Archived', background: '#F1F5F9', color: '#64748B' },
+  live: { label: 'Live', background: 'var(--color-live-soft)', color: 'var(--color-live)' },
+  'in-progress': { label: 'In progress', background: 'var(--color-lavender-bg)', color: 'var(--color-link)' },
+  archived: { label: 'Archived', background: 'var(--color-hover)', color: 'var(--color-subtle)' },
 }
 
 export function StatusBadge({ status }: { status: Status }) {
@@ -106,7 +95,7 @@ export function StatusBadge({ status }: { status: Status }) {
 }
 
 export function Tag({ label, active, onClick }: { label: string; active?: boolean; onClick?: () => void }) {
-  const className = `tag-chip font-mono inline-flex items-center px-3 py-1 rounded-tag text-[13px] ${active ? 'active bg-vibrant-purple text-white' : 'bg-lavender-bg text-vibrant-purple'}`
+  const className = `tag-chip font-mono inline-flex items-center px-3 py-1 rounded-tag text-[13px] ${active ? 'active bg-vibrant-purple text-white' : 'bg-lavender-bg text-link'}`
   if (!onClick) return <span className={className}>#{label}</span>
   return (
     <button type="button" onClick={onClick} aria-pressed={active} className={className}>
@@ -122,7 +111,7 @@ export function BumpButton({ buildId, bumped, count, large }: { buildId: string;
       <button
         type="submit"
         aria-pressed={bumped}
-        className={`bump-btn font-mono inline-flex items-center gap-2 rounded-btn font-medium ${bumped ? 'bumped' : 'bg-lavender-bg text-vibrant-purple'} ${large ? 'px-6 py-3 text-[16px] min-h-12' : 'px-3 py-1.5 text-[13px] min-h-9'}`}
+        className={`bump-btn font-mono inline-flex items-center gap-2 rounded-btn font-medium ${bumped ? 'bumped' : 'bg-lavender-bg text-link'} ${large ? 'px-6 py-3 text-[16px] min-h-12' : 'px-3 py-1.5 text-[13px] min-h-9'}`}
       >
         <span aria-hidden>{bumped ? '☁️' : '🤙'}</span>
         Bump {count > 0 && <span>({count})</span>}

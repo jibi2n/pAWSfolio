@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import { Feed } from '@/components/feed'
+import { HeroClouds } from '@/components/hero-clouds'
 import { getCurrentUser } from '@/lib/auth'
 import { getBuilds } from '@/lib/db'
-import { CloudBg, btn } from '@/components/ui'
+import { btn } from '@/components/ui'
 
 export default async function FeedPage({ searchParams }: PageProps<'/'>) {
   const [params, user] = await Promise.all([searchParams, getCurrentUser()])
@@ -27,11 +28,8 @@ function Hero() {
         />
       ))}
 
-      <div className="absolute bottom-0 left-0 right-0 z-10 h-[120px]">
-        <CloudBg className="absolute bottom-0 left-[-10%] w-[60%] opacity-60" />
-        <CloudBg className="absolute bottom-0 right-[-5%] w-[55%] opacity-50" />
-        <CloudBg className="absolute bottom-4 left-[25%] w-[50%] opacity-40" />
-      </div>
+      <HeroClouds />
+
 
       <div className="relative z-20 max-w-4xl mx-auto px-5 sm:px-8 pb-20 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 bg-white/12 border border-white/20">

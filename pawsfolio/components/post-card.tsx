@@ -4,7 +4,7 @@ import { Avatar, BumpButton, StatusBadge, Tag } from './ui'
 
 export function PostCard({ build }: { build: Build }) {
   return (
-    <article className="card-hover relative flex flex-col overflow-hidden animate-fadeinup bg-white rounded-card shadow-[0_8px_24px_rgba(46,26,95,0.08)]">
+    <article className="card-hover relative flex flex-col overflow-hidden animate-fadeinup bg-card rounded-card shadow-[0_8px_24px_rgba(46,26,95,0.08)]">
       <div className="overflow-hidden aspect-[16/10] bg-lavender-bg">
         <img src={build.imageUrl} alt="" className="w-full h-full object-cover" loading="lazy" />
       </div>
@@ -16,7 +16,7 @@ export function PostCard({ build }: { build: Build }) {
             {build.title}
           </Link>
         </h3>
-        <p className="text-[14px] text-[#64748B] leading-relaxed line-clamp-2">{build.description}</p>
+        <p className="text-[14px] text-subtle leading-relaxed line-clamp-2">{build.description}</p>
         <div className="flex flex-wrap gap-1.5">
           {build.tags.slice(0, 4).map(t => <Tag key={t} label={t} />)}
         </div>
