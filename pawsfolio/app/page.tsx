@@ -32,7 +32,7 @@ function Hero() {
         <Mascot />
         <h1 className="font-hand text-[44px] sm:text-[72px] leading-tight text-white mb-5">What&apos;s in the Clouds?</h1>
         <p className="text-[15px] sm:text-[17px] text-white/95 drop-shadow-[0_1px_8px_rgba(46,26,95,0.55)] max-w-lg mx-auto leading-relaxed mb-8">
-          See what fellow builders are making with AWS. Share yours, bump the ones you love.
+          See what fellow builders are making with AWS. Share yours and interact with other members!
         </p>
         <Link href="/builds/new" className={btn('primary')}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>

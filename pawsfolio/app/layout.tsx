@@ -24,7 +24,7 @@ const gochi = Gochi_Hand({
 
 export const metadata: Metadata = {
   title: "pAWSfolio · AWS Builders - UST",
-  description: "See what fellow builders are making with AWS.",
+  description: "See what fellow builders are making with AWS Builders - UST.",
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {

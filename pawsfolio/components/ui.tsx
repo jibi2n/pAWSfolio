@@ -61,7 +61,7 @@ export function Logo() {
       <div className="flex items-center justify-center rounded-[10px] lg:rounded-xl shrink-0 bg-vibrant-purple w-9 h-9 lg:w-11 lg:h-11">
         <CloudFace size={30} />
       </div>
-      <span className="font-bold text-[17px] lg:text-[21px] tracking-tight">pAWSfolio</span>
+      <span className="font-bold text-[17px] lg:text-[21px] tracking-tight">pAWSfolio - AWS Builders UST</span>
     </div>
   )
 }
