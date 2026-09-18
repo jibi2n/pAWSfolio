@@ -1,4 +1,4 @@
-// Twinkling stars for the purple backgrounds (hero, login, signup). Pure CSS, no JS.
+// Twinkling stars for the purple backgrounds (hero, login, signup), purple mode only. Pure CSS, no JS.
 // Positions come from a seeded generator so server and browser render the same stars.
 function seeded(seed: number) {
   return () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646
@@ -26,7 +26,7 @@ const SPARKLES = Array.from({ length: 6 }, () => ({
 
 export function Starfield() {
   return (
-    <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden" aria-hidden>
+    <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden hidden purple:block" aria-hidden>
       {STARS.map((s, i) => (
         <span
           key={i}

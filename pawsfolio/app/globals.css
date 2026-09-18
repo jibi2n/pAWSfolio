@@ -9,16 +9,16 @@
   --color-lavender: #C084FC;
   --color-lavender-bg: #E9D5FF;
   --color-mint: #4ADEB8;
-  --color-surface: #F8FAFC;
-  --color-text: #0F172A;
-  --color-muted: #94A3B8;
+  --color-surface: #F3EDFF; /* soft lavender page (was slate #F8FAFC) */
+  --color-text: #1F1535; /* purple-black */
+  --color-muted: #9A90B8;
   --color-white: #FFFFFF;
   --color-ink: #0F172A; /* text on mint: stays dark in every theme */
 
   /* Semantic tokens: light values here, purple values in [data-theme="purple"] below */
   --color-card: #FFFFFF;
-  --color-subtle: #64748B;
-  --color-hover: #F1F5F9;
+  --color-subtle: #6B6190;
+  --color-hover: #EBE2FF;
   --color-link: #7C3AED;
   --color-on-soft: #2E1A5F;
   --color-danger: #E11D48;
@@ -128,7 +128,11 @@ body {
   .star-sparkle { animation: none; opacity: 0.6; }
 }
 
+/* Light mode: a lighter daytime purple sky. Purple mode: the deep night sky. */
 .hero-gradient {
+  background: linear-gradient(160deg, #6A4BD8 0%, #8B6CEB 45%, #B39BF7 100%);
+}
+:root[data-theme="purple"] .hero-gradient {
   background: linear-gradient(160deg, #2E1A5F 0%, #4A2080 40%, #7C3AED 100%);
 }
 

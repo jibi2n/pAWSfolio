@@ -23,7 +23,7 @@ function Hero() {
     <div className="hero-gradient grain-overlay relative overflow-hidden min-h-[420px] sm:min-h-[480px] pt-[104px] sm:pt-[120px]">
       <Starfield />
       {/* Vignette: darkens gently toward the edges, keeping the mascot area brightest */}
-      <div className="absolute inset-0 z-[1] pointer-events-none bg-[radial-gradient(ellipse_75%_85%_at_50%_32%,transparent_35%,rgba(30,17,69,0.95)_100%)]" aria-hidden />
+      <div className="absolute inset-0 z-[1] pointer-events-none bg-[radial-gradient(ellipse_75%_85%_at_50%_32%,transparent_35%,rgba(59,35,134,0.35)_100%)] purple:bg-[radial-gradient(ellipse_75%_85%_at_50%_32%,transparent_35%,rgba(30,17,69,0.95)_100%)]" aria-hidden />
 
       <HeroClouds />
 
@@ -31,7 +31,7 @@ function Hero() {
       <div className="relative z-20 max-w-4xl mx-auto px-5 sm:px-8 pb-20 text-center">
         <Mascot />
         <h1 className="font-hand text-[44px] sm:text-[72px] leading-tight text-white mb-5">What&apos;s in the Clouds?</h1>
-        <p className="text-[15px] sm:text-[17px] text-white/80 max-w-lg mx-auto leading-relaxed mb-8">
+        <p className="text-[15px] sm:text-[17px] text-white/95 drop-shadow-[0_1px_8px_rgba(46,26,95,0.55)] max-w-lg mx-auto leading-relaxed mb-8">
           See what fellow builders are making with AWS. Share yours, bump the ones you love.
         </p>
         <Link href="/builds/new" className={btn('primary')}>
