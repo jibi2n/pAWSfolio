@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Feed } from '@/components/feed'
 import { HeroClouds } from '@/components/hero-clouds'
 import { Mascot } from '@/components/mascot'
+import { Starfield } from '@/components/starfield'
 import { getCurrentUser } from '@/lib/auth'
 import { getBuilds } from '@/lib/db'
 import { btn } from '@/components/ui'
@@ -20,14 +21,9 @@ export default async function FeedPage({ searchParams }: PageProps<'/'>) {
 function Hero() {
   return (
     <div className="hero-gradient grain-overlay relative overflow-hidden min-h-[420px] sm:min-h-[480px] pt-[104px] sm:pt-[120px]">
-      {Array.from({ length: 20 }, (_, i) => (
-        <div
-          key={i}
-          className="absolute rounded-full bg-white"
-          style={{ opacity: 0.15 + (i % 5) * 0.05, width: 2 + (i % 3), height: 2 + (i % 3), top: `${(i * 37) % 60}%`, left: `${(i * 53) % 100}%` }}
-          aria-hidden
-        />
-      ))}
+      <Starfield />
+      {/* Vignette: darkens gently toward the edges, keeping the mascot area brightest */}
+      <div className="absolute inset-0 z-[1] pointer-events-none bg-[radial-gradient(ellipse_75%_85%_at_50%_32%,transparent_35%,rgba(30,17,69,0.95)_100%)]" aria-hidden />
 
       <HeroClouds />
 

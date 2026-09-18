@@ -4,6 +4,7 @@ import { useActionState } from 'react'
 import Link from 'next/link'
 import { logIn, signUp, type AuthState } from '@/app/actions'
 import { HeroClouds } from './hero-clouds'
+import { Starfield } from './starfield'
 import { CloudFace, btn } from './ui'
 
 const FIELDS = {
@@ -32,6 +33,7 @@ export function AuthForm({ mode, next }: { mode: 'login' | 'signup'; next: strin
   return (
     <div className="hero-gradient grain-overlay relative overflow-hidden min-h-screen flex items-center justify-center px-4 sm:px-6 pt-24 sm:pt-28 pb-16">
       <HeroClouds />
+      <Starfield />
 
       <div className="relative z-20 w-full max-w-[440px] p-6 sm:p-10 bg-card rounded-hero shadow-[0_24px_64px_rgba(46,26,95,0.35)]">
         <div className="flex items-center justify-center rounded-btn bg-vibrant-purple w-14 h-14 mb-6">
