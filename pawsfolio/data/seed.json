@@ -1,0 +1,277 @@
+{
+  "users": [
+    {
+      "id": "u1",
+      "name": "Maria Santos",
+      "handle": "@mariasantos",
+      "email": "mariasantos@ust.edu.ph",
+      "password": "password123",
+      "avatarColor": "#7C3AED"
+    },
+    {
+      "id": "u2",
+      "name": "Jake Reyes",
+      "handle": "@jakereyes",
+      "email": "jakereyes@ust.edu.ph",
+      "password": "password123",
+      "avatarColor": "#4ADEB8"
+    },
+    {
+      "id": "u3",
+      "name": "Lia Cruz",
+      "handle": "@liacruz",
+      "email": "liacruz@ust.edu.ph",
+      "password": "password123",
+      "avatarColor": "#F59E0B"
+    },
+    {
+      "id": "u4",
+      "name": "Carlo Diaz",
+      "handle": "@carlodiaz",
+      "email": "carlodiaz@ust.edu.ph",
+      "password": "password123",
+      "avatarColor": "#EC4899"
+    },
+    {
+      "id": "u5",
+      "name": "Ana Lim",
+      "handle": "@analim",
+      "email": "analim@ust.edu.ph",
+      "password": "password123",
+      "avatarColor": "#3B82F6"
+    },
+    {
+      "id": "u6",
+      "name": "Ben Torres",
+      "handle": "@bentorres",
+      "email": "bentorres@ust.edu.ph",
+      "password": "password123",
+      "avatarColor": "#10B981"
+    },
+    {
+      "id": "u7",
+      "name": "Mia Gonzalez",
+      "handle": "@miagonzalez",
+      "email": "miagonzalez@ust.edu.ph",
+      "password": "password123",
+      "avatarColor": "#F97316"
+    },
+    {
+      "id": "u8",
+      "name": "Rico Navarro",
+      "handle": "@riconavarro",
+      "email": "riconavarro@ust.edu.ph",
+      "password": "password123",
+      "avatarColor": "#8B5CF6"
+    }
+  ],
+  "sessions": [],
+  "builds": [
+    {
+      "id": "b1",
+      "authorId": "u1",
+      "title": "Serverless Attendance Tracker",
+      "description": "Built a fully serverless system to track student attendance using AWS Lambda and DynamoDB. Professors scan QR codes; records flow into a dashboard with real-time updates via WebSockets on API Gateway.",
+      "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop&auto=format",
+      "link": "https://github.com/mariasantos/attendance-tracker",
+      "status": "live",
+      "tags": [
+        "Lambda",
+        "DynamoDB",
+        "API Gateway",
+        "S3"
+      ],
+      "createdAt": "2026-09-16T10:00:00.000Z",
+      "bumpedBy": [
+        "u2",
+        "u3",
+        "u4",
+        "u5"
+      ],
+      "comments": [
+        {
+          "id": "c1",
+          "authorId": "u2",
+          "text": "This is so clean! Did you use Cognito for professor auth?",
+          "createdAt": "2026-09-18T11:00:00.000Z"
+        },
+        {
+          "id": "c2",
+          "authorId": "u1",
+          "text": "Yes! Cognito User Pools for profs, and a simple JWT check on the student side.",
+          "createdAt": "2026-09-18T11:15:00.000Z"
+        },
+        {
+          "id": "c3",
+          "authorId": "u3",
+          "text": "I want to replicate this for our department. Mind if I fork the repo?",
+          "createdAt": "2026-09-18T11:40:00.000Z"
+        },
+        {
+          "id": "c4",
+          "authorId": "u4",
+          "text": "The real-time update via WebSocket is genius. What's the cold start like on Lambda?",
+          "createdAt": "2026-09-18T11:55:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "b2",
+      "authorId": "u2",
+      "title": "S3 Photo Gallery with CloudFront",
+      "description": "A static photo gallery hosted on S3 with CloudFront for global CDN delivery. Photos are uploaded via a presigned URL flow — no backend server required. Includes a Lambda thumbnail generator.",
+      "imageUrl": "https://images.unsplash.com/photo-1526779259212-939e64788e3c?w=800&h=500&fit=crop&auto=format",
+      "link": "https://github.com/jakereyes/s3-gallery",
+      "status": "live",
+      "tags": [
+        "S3",
+        "CloudFront",
+        "Lambda"
+      ],
+      "createdAt": "2026-09-15T10:00:00.000Z",
+      "bumpedBy": [
+        "u1",
+        "u3",
+        "u4",
+        "u5",
+        "u6"
+      ],
+      "comments": [
+        {
+          "id": "c5",
+          "authorId": "u1",
+          "text": "Presigned URLs are such an elegant solution. Great use of S3!",
+          "createdAt": "2026-09-17T16:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "b3",
+      "authorId": "u3",
+      "title": "Bedrock Study Buddy",
+      "description": "An AI-powered study assistant using Amazon Bedrock (Claude 3 Sonnet). Students paste their lecture notes and get a personalized quiz, summary, and concept map — all streamed back in real time.",
+      "imageUrl": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&h=500&fit=crop&auto=format",
+      "status": "in-progress",
+      "tags": [
+        "Bedrock",
+        "Lambda",
+        "Amplify"
+      ],
+      "createdAt": "2026-09-14T10:00:00.000Z",
+      "bumpedBy": [
+        "u1",
+        "u2",
+        "u4",
+        "u5",
+        "u6",
+        "u7",
+        "u8"
+      ],
+      "comments": []
+    },
+    {
+      "id": "b4",
+      "authorId": "u4",
+      "title": "UST Lost & Found Hub",
+      "description": "A campus lost & found board backed by DynamoDB and Amplify. Post items with photos, search by category, and get email notifications via SES when a match is found.",
+      "imageUrl": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=800&h=500&fit=crop&auto=format",
+      "link": "https://lostandfound.ust.edu.ph",
+      "status": "live",
+      "tags": [
+        "DynamoDB",
+        "Amplify",
+        "SES",
+        "S3"
+      ],
+      "createdAt": "2026-09-12T10:00:00.000Z",
+      "bumpedBy": [
+        "u1",
+        "u2",
+        "u3"
+      ],
+      "comments": []
+    },
+    {
+      "id": "b5",
+      "authorId": "u5",
+      "title": "Real-Time Chat with AppSync",
+      "description": "A real-time group chat app built on AppSync subscriptions and DynamoDB. Supports multiple channels, file sharing via S3, and a custom emoji reaction system.",
+      "imageUrl": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&h=500&fit=crop&auto=format",
+      "status": "in-progress",
+      "tags": [
+        "AppSync",
+        "DynamoDB",
+        "S3"
+      ],
+      "createdAt": "2026-09-10T10:00:00.000Z",
+      "bumpedBy": [
+        "u1",
+        "u2"
+      ],
+      "comments": []
+    },
+    {
+      "id": "b6",
+      "authorId": "u6",
+      "title": "EC2 Dev Environment Manager",
+      "description": "A web dashboard to spin up and tear down EC2 dev environments on demand. Uses Lambda to orchestrate instance lifecycle and sends Slack notifications via EventBridge when state changes.",
+      "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=500&fit=crop&auto=format",
+      "link": "https://github.com/bentorres/ec2-devenv",
+      "status": "archived",
+      "tags": [
+        "EC2",
+        "Lambda",
+        "EventBridge"
+      ],
+      "createdAt": "2026-09-08T10:00:00.000Z",
+      "bumpedBy": [
+        "u1"
+      ],
+      "comments": []
+    },
+    {
+      "id": "b7",
+      "authorId": "u7",
+      "title": "AI Receipt Scanner",
+      "description": "Upload a photo of any receipt and Textract pulls the line items, totals, and merchant name. Results feed into DynamoDB and a monthly spend dashboard built with QuickSight.",
+      "imageUrl": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=500&fit=crop&auto=format",
+      "status": "live",
+      "tags": [
+        "Textract",
+        "DynamoDB",
+        "Lambda",
+        "S3"
+      ],
+      "createdAt": "2026-09-05T10:00:00.000Z",
+      "bumpedBy": [
+        "u1",
+        "u2",
+        "u3",
+        "u4",
+        "u5",
+        "u6"
+      ],
+      "comments": []
+    },
+    {
+      "id": "b8",
+      "authorId": "u8",
+      "title": "Campus Event Notifier",
+      "description": "Students subscribe to campus event categories via SNS. Event organizers publish from a simple admin UI and the system fans out to email, SMS, and push — all without a traditional server.",
+      "imageUrl": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=500&fit=crop&auto=format",
+      "status": "live",
+      "tags": [
+        "SNS",
+        "SQS",
+        "Lambda"
+      ],
+      "createdAt": "2026-09-02T10:00:00.000Z",
+      "bumpedBy": [
+        "u1",
+        "u2",
+        "u3"
+      ],
+      "comments": []
+    }
+  ]
+}

@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local JSON database + uploaded images (seed.json is committed)
+/data/db.json
+/data/db.json.tmp
+/data/uploads/
