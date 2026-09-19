@@ -71,7 +71,7 @@ export function Nav({ user }: { user: PublicUser | null }) {
         onSky ? 'bg-transparent border-transparent text-white' : 'bg-card/90 backdrop-blur-md border-lavender-bg text-text'
       }`}
     >
-      <nav aria-label="Primary" className="h-full px-4 md:px-8 lg:px-12 grid grid-cols-[1fr_auto] lg:grid-cols-[1fr_auto_1fr] items-center gap-6 whitespace-nowrap">
+      <nav aria-label="Primary" className="h-full px-4 md:px-8 lg:px-12 grid grid-cols-[1fr_auto] lg:grid-cols-[1fr_auto_1fr] items-center gap-3 lg:gap-6 whitespace-nowrap">
         <Link href="/" aria-label="pAWSfolio home" className="justify-self-start">
           <Logo />
         </Link>
@@ -88,7 +88,7 @@ export function Nav({ user }: { user: PublicUser | null }) {
           })}
         </div>
 
-        <div className="justify-self-end flex items-center gap-5">
+        <div className="justify-self-end flex items-center gap-3 lg:gap-5">
           <ThemeToggle />
 
           {user ? (

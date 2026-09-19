@@ -61,7 +61,13 @@ export function Logo() {
       <div className="flex items-center justify-center rounded-[10px] lg:rounded-xl shrink-0 bg-vibrant-purple w-9 h-9 lg:w-11 lg:h-11">
         <CloudFace size={30} />
       </div>
-      <span className="font-bold text-[17px] lg:text-[21px] tracking-tight">pAWSfolio - AWS Builders UST</span>
+      {/* Below lg the subtitle drops to its own small line so the nav controls fit on phones */}
+      <span className="font-bold text-[17px] lg:text-[21px] tracking-tight max-lg:leading-tight">
+        pAWSfolio
+        <span className="max-lg:block max-lg:font-mono max-lg:text-[10px] max-lg:font-medium max-lg:uppercase max-lg:tracking-[0.14em] max-lg:opacity-75">
+          <span className="max-lg:hidden"> - </span>AWS Builders UST
+        </span>
+      </span>
     </div>
   )
 }

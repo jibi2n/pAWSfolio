@@ -38,6 +38,36 @@ export function Feed({ builds, params }: { builds: Build[]; params: FeedParams }
 
   const first = (page - 1) * PER_PAGE + 1
   const last = Math.min(page * PER_PAGE, sorted.length)
+  const filterCount = activeTags.length + (sort === 'bumped' ? 1 : 0)
+
+  // Rendered inline on desktop and inside the filter panel below lg.
+  const sortLinks = (h: string) =>
+    (['newest', 'bumped'] as const).map(s => (
+      <Link
+        key={s}
+        href={href({ sort: s === 'bumped' ? s : '' })}
+        scroll={false}
+        aria-current={sort === s ? 'true' : undefined}
+        className={`seg-btn flex-1 lg:flex-none justify-center font-mono px-5 ${h} inline-flex items-center text-[13px] font-medium ${sort === s ? 'active' : 'text-subtle bg-card'}`}
+      >
+        {s === 'newest' ? 'Newest' : 'Most bumped'}
+      </Link>
+    ))
+  const tagLinks = ALL_TAGS.map(t => {
+    const active = activeTags.includes(t)
+    const tags = active ? activeTags.filter(x => x !== t) : [...activeTags, t]
+    return (
+      <Link
+        key={t}
+        href={href({ tags: tags.join(',') })}
+        scroll={false}
+        aria-pressed={active}
+        className={`tag-chip shrink-0 font-mono inline-flex items-center px-3 py-1 rounded-tag text-[13px] ${active ? 'active bg-vibrant-purple text-white' : 'bg-lavender-bg text-link'}`}
+      >
+        #{t}
+      </Link>
+    )
+  })
 
   // Same side margins as the nav, content aligned left like an editorial section rather than a centred column.
   return (
@@ -51,48 +81,46 @@ export function Feed({ builds, params }: { builds: Build[]; params: FeedParams }
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 lg:shrink-0">
-          <Form action="/" className="relative sm:flex-1 lg:w-[520px] xl:w-[600px] lg:flex-none">
+        <div className="relative flex gap-3 lg:shrink-0">
+          <Form action="/" className="relative flex-1 lg:w-[520px] xl:w-[600px] lg:flex-none">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="absolute left-4 top-1/2 -translate-y-1/2" aria-hidden><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
             <input type="search" name="q" defaultValue={q} placeholder="Search builds…" className="input pl-12 !h-13 text-[16px]" aria-label="Search builds (press Enter)" />
             {activeTags.length > 0 && <input type="hidden" name="tags" value={activeTags.join(',')} />}
             {sort === 'bumped' && <input type="hidden" name="sort" value="bumped" />}
           </Form>
-          <div className="flex self-start rounded-tag overflow-hidden shrink-0 border border-lavender-bg">
-            {(['newest', 'bumped'] as const).map(s => (
-              <Link
-                key={s}
-                href={href({ sort: s === 'bumped' ? s : '' })}
-                scroll={false}
-                aria-current={sort === s ? 'true' : undefined}
-                className={`seg-btn font-mono px-5 h-13 inline-flex items-center text-[13px] font-medium ${sort === s ? 'active' : 'text-subtle bg-card'}`}
-              >
-                {s === 'newest' ? 'Newest' : 'Most bumped'}
-              </Link>
-            ))}
-          </div>
+          <div className="hidden lg:flex self-start rounded-tag overflow-hidden shrink-0 border border-lavender-bg">{sortLinks('h-13')}</div>
+
+          {/* ─── Below lg: sort + tags live behind one filter button. Native <details>, no JS. ─── */}
+          <details className="lg:hidden group">
+            <summary
+              aria-label={`Filters${filterCount ? ` (${filterCount} active)` : ''}`}
+              className={`list-none cursor-pointer relative w-13 h-13 rounded-tag border flex items-center justify-center transition-colors ${
+                filterCount ? 'bg-vibrant-purple border-vibrant-purple text-white' : 'bg-card border-lavender-bg text-subtle group-open:border-link'
+              }`}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden><line x1="4" y1="6" x2="20" y2="6" /><line x1="7" y1="12" x2="17" y2="12" /><line x1="10" y1="18" x2="14" y2="18" /></svg>
+              {filterCount > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 min-w-5 h-5 px-1 rounded-full bg-mint text-ink font-mono text-[11px] font-bold flex items-center justify-center">{filterCount}</span>
+              )}
+            </summary>
+            <div className="absolute z-20 inset-x-0 top-full mt-2 p-4 bg-card rounded-2xl border border-lavender-bg shadow-[0_16px_40px_rgba(46,26,95,0.18)]">
+              <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted mb-2">Sort</p>
+              <div className="flex rounded-tag overflow-hidden border border-lavender-bg mb-4">{sortLinks('h-10')}</div>
+              <div className="flex items-baseline justify-between mb-2">
+                <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted">Filter by service</p>
+                {activeTags.length > 0 && (
+                  <Link href={href({ tags: '' })} scroll={false} className="font-mono text-[12px] text-link">Clear</Link>
+                )}
+              </div>
+              <div className="flex flex-wrap gap-2">{tagLinks}</div>
+            </div>
+          </details>
         </div>
       </div>
 
-      <div className="flex items-start gap-4 mb-8 pb-6 border-b border-lavender-bg">
-        <span className="hidden md:block font-mono text-[12px] text-muted shrink-0 pt-1.5">Filter by service</span>
-        <div className="flex gap-2 min-w-0 flex-1 overflow-x-auto no-scrollbar -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap md:overflow-visible">
-            {ALL_TAGS.map(t => {
-              const active = activeTags.includes(t)
-              const tags = active ? activeTags.filter(x => x !== t) : [...activeTags, t]
-              return (
-                <Link
-                  key={t}
-                  href={href({ tags: tags.join(',') })}
-                  scroll={false}
-                  aria-pressed={active}
-                  className={`tag-chip shrink-0 font-mono inline-flex items-center px-3 py-1 rounded-tag text-[13px] ${active ? 'active bg-vibrant-purple text-white' : 'bg-lavender-bg text-link'}`}
-                >
-                  #{t}
-                </Link>
-              )
-            })}
-        </div>
+      <div className="hidden lg:flex items-start gap-4 mb-8 pb-6 border-b border-lavender-bg">
+        <span className="font-mono text-[12px] text-muted shrink-0 pt-1.5">Filter by service</span>
+        <div className="flex gap-2 min-w-0 flex-1 flex-wrap">{tagLinks}</div>
       </div>
 
       {paginated.length === 0 ? (
