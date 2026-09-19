@@ -1,0 +1,29 @@
+# Redeploys the Lightsail server on every push to main. Setup: DEPLOY.md, step 9.
+name: Deploy to Lightsail
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # adds a "Run workflow" button in the Actions tab
+
+concurrency: deploy # a second push waits instead of building on top of the first
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ubuntu
+          key: ${{ secrets.SSH_KEY }}
+          command_timeout: 20m
+          script: |
+            set -e
+            cd ~/pAWSfolio
+            git fetch origin main
+            git reset --hard origin/main   # data/db.json and data/uploads are gitignored, so they're untouched
+            cd pawsfolio
+            npm ci
+            npm run build
+            sudo systemctl restart pawsfolio
