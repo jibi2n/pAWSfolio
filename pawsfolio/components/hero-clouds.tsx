@@ -5,6 +5,8 @@ import { useEffect, useRef } from 'react'
 // Vanta CLOUDS: a WebGL shader of soft volumetric clouds that drift and follow the pointer (mouse or touch).
 // It sits between a purple gradient and the content on top. `mix-blend-screen` drops the dark sky out, so only
 // the bright, cottony clouds show over the purple, and the layer's opacity keeps them see-through.
+const CLOUD_FPS = 30
+
 export function HeroClouds() {
   const ref = useRef<HTMLDivElement>(null)
 
@@ -18,7 +20,7 @@ export function HeroClouds() {
     Promise.all([import('three'), import('vanta/dist/vanta.clouds.min')])
       .then(([THREE, vanta]) => {
         if (cancelled || !ref.current) return
-        effect = vanta.default({
+        const clouds = (effect = vanta.default({
           el: ref.current,
           THREE,
           mouseControls: true,
@@ -34,7 +36,18 @@ export function HeroClouds() {
           sunGlareColor: 0x7c3aed,
           sunlightColor: 0xc084fc,
           speed: 0.8,
-        })
+        }))
+        // One shader draw takes ~20ms on integrated graphics, and vanta draws every frame, which drags the whole
+        // page down to ~50fps while the hero is on screen. The clouds drift slowly, so draw them less often.
+        // Vanta advances time by the clock, so the drift speed stays the same.
+        const render = clouds.renderer.render.bind(clouds.renderer)
+        let last = 0
+        clouds.renderer.render = (...args) => {
+          const now = performance.now()
+          if (now - last < 1000 / CLOUD_FPS - 3) return // -3ms: don't miss a frame to timer jitter
+          last = now
+          render(...args)
+        }
       })
       .catch(() => {}) // no WebGL: the hero still has its gradient and SVG clouds
 
