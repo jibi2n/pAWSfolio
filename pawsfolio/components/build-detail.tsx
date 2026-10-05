@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import type { Build, PublicUser } from '@/lib/types'
 import { Avatar, BumpButton, MascotCloud, StatusBadge, Tag } from './ui'
@@ -25,8 +26,8 @@ export function BuildDetail({ build, user, isNew }: { build: Build; user: Public
         {user?.id === build.authorId && <OwnerActions buildId={build.id} />}
       </div>
 
-      <div className="overflow-hidden mb-6 sm:mb-8 rounded-card aspect-video bg-lavender-bg">
-        <img src={build.imageUrl} alt={build.title} className="w-full h-full object-cover" />
+      <div className="relative overflow-hidden mb-6 sm:mb-8 rounded-card aspect-video bg-lavender-bg">
+        <Image src={build.imageUrl} alt={build.title} fill preload unoptimized={!build.imageUrl.startsWith('/uploads/')} sizes="(min-width: 800px) 800px, 100vw" className="object-cover" />
       </div>
 
       <StatusBadge status={build.status} />

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import type { Build } from '@/lib/types'
 import { Avatar, BumpButton, StatusBadge, Tag } from './ui'
@@ -5,8 +6,9 @@ import { Avatar, BumpButton, StatusBadge, Tag } from './ui'
 export function PostCard({ build }: { build: Build }) {
   return (
     <article className="card-hover relative flex flex-col overflow-hidden animate-fadeinup bg-card rounded-card shadow-[0_8px_24px_rgba(46,26,95,0.08)]">
-      <div className="overflow-hidden aspect-[16/10] bg-lavender-bg">
-        <img src={build.imageUrl} alt="" className="w-full h-full object-cover" loading="lazy" />
+      <div className="relative overflow-hidden aspect-[16/10] bg-lavender-bg">
+        {/* Uploads get resized by next/image; seed images are Unsplash URLs that already come sized. */}
+        <Image src={build.imageUrl} alt="" fill unoptimized={!build.imageUrl.startsWith('/uploads/')} sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
       </div>
       <div className="flex flex-col gap-3 p-5 flex-1">
         <StatusBadge status={build.status} />
